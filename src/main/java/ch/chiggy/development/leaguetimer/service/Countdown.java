@@ -11,9 +11,15 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class Countdown {
+  
+    private MonsterFactory factory;
+    
+    public Countdown(MonsterFactory factory){
+      this.factory = factory;
+    }
 
     public Timeline createTimeLine(Label label, int startTime, ImageView imageView,
- AudioClip sound) {
+ AudioClip sound, boolean ward, String id) {
         Timeline timeline = new Timeline();
         AudioClip alert =
                 new AudioClip(Countdown.class.getResource("/sounds/warning.mp3").toString());
@@ -43,6 +49,9 @@ public class Countdown {
                             red = false;
                             sound.play();
                             imageView.setBlendMode(null);
+                            if (ward){
+                              factory.removeWard(id);
+                            }
                         } else {
                             if (red) {
                                 label.setTextFill(Color.RED);

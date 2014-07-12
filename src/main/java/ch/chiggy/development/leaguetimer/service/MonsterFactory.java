@@ -23,7 +23,7 @@ import ch.chiggy.development.leaguetimer.model.WardType;
 public class MonsterFactory {
 
   private Controller controller;
-  private Countdown countdown = new Countdown();
+  private Countdown countdown = new Countdown(this);
 
   public MonsterFactory(Controller controller) {
     this.controller = controller;
@@ -41,10 +41,10 @@ public class MonsterFactory {
     anchor.setLayoutY(ward.getLocation().getY() - 15);
     AnchorPane.setLeftAnchor(label, -5.0);
     AnchorPane.setTopAnchor(label, 35.0);
-    anchor.getChildren().addAll(imageView, label);
-    Timeline timeline = countdown.createTimeLine(label, startTime, imageView, Ward.getSound());
-    timeline.play();
     String id = UUID.randomUUID().toString();
+    anchor.getChildren().addAll(imageView, label);
+    Timeline timeline = countdown.createTimeLine(label, startTime, imageView, Ward.getSound(), true, id);
+    timeline.play();
     anchor.setId(id);
     anchor.setOnMousePressed(event -> {
       event.consume();
@@ -124,7 +124,7 @@ public class MonsterFactory {
           case PRIMARY:
             if (timeline == null || timeline.getStatus() == Status.STOPPED) {
               timeline =
-                  countdown.createTimeLine(label, startTime, imageView, npcMonster.getSound());
+                  countdown.createTimeLine(label, startTime, imageView, npcMonster.getSound(), false, null);
               timeline.playFromStart();
             } else if (timeline.getStatus() == Status.PAUSED) {
               timeline.play();
@@ -134,7 +134,7 @@ public class MonsterFactory {
             break;
           case SECONDARY:
             timeline.stop();
-            timeline = countdown.createTimeLine(label, startTime, imageView, npcMonster.getSound());
+            timeline = countdown.createTimeLine(label, startTime, imageView, npcMonster.getSound(), false, null);
             timeline.playFromStart();
 
           default:
@@ -147,6 +147,10 @@ public class MonsterFactory {
     return anchor;
   }
 
+  public void removeWard(String id){
+    controller.removeAnchorPane(id);
+  }
+  
   public List<AnchorPane> createAllMonsters() {
 
     List<AnchorPane> monsterList = new ArrayList<AnchorPane>();
