@@ -1,0 +1,12 @@
+@CHARSET "ISO-8859-1";
+
+.root {
+    -fx-background-image: url("SummonersRift.jpg");
+}
+
+.label {
+	-fx-text-alignment: center;
+	-fx-text-fill: white;
+	-fx-font-size: 20px;
+	-fx-font-weight:bold;
+}

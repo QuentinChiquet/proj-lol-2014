@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://org.eclipse.fx.ide.jdt/1.0" buildDirectory="C:\Users\ra0w\Desktop\lol-timer-build">
+  <deploy height="500" placeholderref="lol" placeholderid="lol" width="500" packagingFormat="all" verbose="true">
+    <application name="sadfdsf" mainclass="ch.bedag.ste.lehrling.aze.lol_timer.controller.Controller" version="10072014" toolkit="fx"/>
+    <info title="lol-timer" vendor="aze"/>
+  </deploy>
+  <signjar/>
+</anttasks:AntTask>

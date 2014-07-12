@@ -1,0 +1,19 @@
+# Eclipse
+.settings
+.classpath
+.project
+.metadata
+tmp/
+bin/
+
+# Maven
+target/
+logs/
+
+# IntelliJ
+.idea/
+*.ipr
+*.iws
+*.iml
+out/
+.idea_modules/
