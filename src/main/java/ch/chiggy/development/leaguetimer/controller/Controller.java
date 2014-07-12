@@ -15,29 +15,29 @@ import ch.chiggy.development.leaguetimer.view.Gui;
 
 public class Controller extends Application {
 
-    private Gui gui;
-    private MonsterFactory monsterFactory;
-    private List<AnchorPane> monsterList;
+  private Gui gui;
+  private MonsterFactory monsterFactory;
+  private List<AnchorPane> monsterList;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+  public static void main(String[] args) {
+    launch(args);
+  }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        gui = new Gui(primaryStage, this);
-        monsterFactory = new MonsterFactory(this);
-        monsterList = monsterFactory.createAllMonsters();
-        gui.addMonsters(monsterList);
-    }
+  @Override
+  public void start(Stage primaryStage) throws Exception {
+    gui = new Gui(primaryStage, this);
+    monsterFactory = new MonsterFactory(this);
+    monsterList = monsterFactory.createAllMonsters();
+    gui.addMonsters(monsterList);
+  }
 
-    public void removeAnchorPane(String id) {
-        gui.removeAnchorPane(id);
-    }
+  public void removeAnchorPane(String id) {
+    gui.removeAnchorPane(id);
+  }
 
 
-    public void newWard(WardType type, Point2D location) {
-        Ward ward = new Ward(type, location);
-        gui.addWard(monsterFactory.createWard(ward));
-    }
+  public void newWard(WardType type, Point2D location) {
+    Ward ward = new Ward(type, location);
+    gui.addWard(monsterFactory.createWard(ward));
+  }
 }

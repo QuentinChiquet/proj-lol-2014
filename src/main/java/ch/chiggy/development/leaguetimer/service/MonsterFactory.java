@@ -42,7 +42,8 @@ public class MonsterFactory {
     AnchorPane.setLeftAnchor(label, -5.0);
     AnchorPane.setTopAnchor(label, 35.0);
     anchor.getChildren().addAll(imageView, label);
-    Timeline timeline = countdown.createTimeLine(label, startTime, imageView, Ward.getSound());
+    Timeline timeline =
+        countdown.createTimeLineWithAudioClip(label, startTime, imageView, Ward.getSound());
     timeline.play();
     String id = UUID.randomUUID().toString();
     anchor.setId(id);
@@ -120,11 +121,12 @@ public class MonsterFactory {
         imageView.setBlendMode(BlendMode.MULTIPLY);
         label.setVisible(true);
 
+        String speech = npcMonster.getMonster().getSpeech();
+
         switch (event.getButton()) {
           case PRIMARY:
             if (timeline == null || timeline.getStatus() == Status.STOPPED) {
-              timeline =
-                  countdown.createTimeLine(label, startTime, imageView, npcMonster.getSound());
+              timeline = countdown.createTimeLineWithSpeech(label, startTime, imageView, speech);
               timeline.playFromStart();
             } else if (timeline.getStatus() == Status.PAUSED) {
               timeline.play();
@@ -134,7 +136,7 @@ public class MonsterFactory {
             break;
           case SECONDARY:
             timeline.stop();
-            timeline = countdown.createTimeLine(label, startTime, imageView, npcMonster.getSound());
+            timeline = countdown.createTimeLineWithSpeech(label, startTime, imageView, speech);
             timeline.playFromStart();
 
           default:

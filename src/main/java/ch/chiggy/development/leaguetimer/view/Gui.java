@@ -56,7 +56,4 @@ public class Gui {
   public void addWard(AnchorPane wardPane) {
     root.getChildren().add(wardPane);
   }
-
-
-
 }
